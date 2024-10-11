@@ -17,7 +17,6 @@ class LogTracker {
   
 }
 const totallogsElement = document.getElementById('total-logs');
-
 const logButton = document.getElementById('log-button');
 const logContainer = document.getElementById('log-container');
 
@@ -37,5 +36,5 @@ function updateDisplay() {
 
   function showAlert() {
     const textbox = document.getElementById('textbox');
-    alert("Hello " + textbox.value);
+    alert("You are logged " + textbox.value);
   }

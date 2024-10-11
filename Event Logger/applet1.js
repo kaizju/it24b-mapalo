@@ -21,6 +21,7 @@ const logButton = document.getElementById('log-button');
 const logContainer = document.getElementById('log-container');
 
 const logTracker = new LogTracker(totallogsElement, logButton, logContainer);
+
 function updateDisplay() {
   const textbox = document.getElementById('textbox');
   const displayText = document.getElementById('displayText');
@@ -35,5 +36,5 @@ function updateDisplay() {
 
   function showAlert() {
     const textbox = document.getElementById('textbox');
-    alert("Hello " + textbox.value);
+    alert("You are logged on " + textbox.value);
   }

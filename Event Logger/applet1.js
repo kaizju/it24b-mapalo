@@ -36,5 +36,5 @@ function updateDisplay() {
 
   function showAlert() {
     const textbox = document.getElementById('textbox');
-    alert("You are logged " + textbox.value);
+    alert("You are logged on " + textbox.value);
   }

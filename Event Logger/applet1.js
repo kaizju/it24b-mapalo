@@ -16,6 +16,17 @@ class LogTracker {
   
   
 }
+const totallogsElement = document.getElementById('total-logs');
+const logButton = document.getElementById('log-button');
+const logContainer = document.getElementById('log-container');
+
+const logTracker = new LogTracker(totallogsElement, logButton, logContainer);
+function updateDisplay() {
+  const textbox = document.getElementById('textbox');
+  const displayText = document.getElementById('displayText');
+  displayText.textContent = textbox.value;
+}
+
   function updateDisplay() {
     const textbox = document.getElementById('textbox');
     const displayText = document.getElementById('displayText');

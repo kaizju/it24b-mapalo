@@ -6,6 +6,14 @@ class LogTracker {
         this.logContainer = logContainer;
         this.logButton.addEventListener('click', this.logButtonClick.bind(this));
       }
+      logButtonClick() {
+        const currentDate = new Date();
+        const logMessage = `Logged on ${currentDate.toLocaleString()}`;
+        this.logContainer.innerHTML += `<p>${logMessage}</p>`;
+        this.totallogs++;
+        this.totallogsElement.textContent = `Total logs: ${this.totallogs}`;
+      }
+  
   
 }
   function updateDisplay() {

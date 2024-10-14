@@ -24,10 +24,42 @@
         }
 
         .applet-card {
-            width: 18rem;
+            width: 16rem;
             height: 10rem;
         }
-       
+      
+        .header{
+            margin-top: 2rem;
+            margin-left: 3rem;
+        }
+        .input{
+            margin-top: 2rem;
+            margin-left: 25rem;
+            
+        }
+        .now {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.input2{
+  display: flex;
+  align-items: center;
+  margin-left: 27rem;
+}
+.input1[type="text"] {
+  width: 50%;
+  margin-left: 15rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem
+}
+
+.input3 {
+  margin-left: 10px;
+  margin-top: 2rem;
+  margin-bottom: 2rem
+}
+
     </style>
 </head>
 <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
@@ -61,8 +93,13 @@
     </div>
   </div>
 </nav>
+<section class = "now">
+ <input class="input1" type="text" id = "inputText" placeholder="Search..." oninput="mirrorText()"></input>
+    <button class = "input3 btn btn-primary btn large" onclick="displayAlert()">Search</button>
+    </section>
+     <h1 class="input2" id="outputText"></h1>
 <body>
-
+      
     <div class="applet-flex-container">
         <!--Applet 1-->
         <div class="card border-info mb-3 applet-card">
@@ -98,5 +135,15 @@
         </div>
     </div>
 </body>
-
+<script>
+    function mirrorText(){
+        var inputText = document.getElementById('inputText');
+        var outputText = document.getElementById('outputText');
+        outputText.textContent = inputText.value;
+    }
+    function displayAlert(){
+        var inputText = document.getElementById('inputText').value;
+        alert("Hello "+ inputText);
+    }
+</script>
 </html>

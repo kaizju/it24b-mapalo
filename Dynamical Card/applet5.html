@@ -10,6 +10,43 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script> 
   <title>Cards</title>
+      <style>
+      .applet-flex-container {
+          display: flex;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          align-items: center;
+          margin-top: 2rem;
+          margin-left: 10rem;
+          width: 80%;
+      }
+
+      .applet-flex-container > div {
+          margin-left: 0.8rem;
+      }
+
+      .title {
+          margin-top: 1rem;
+          margin-left: 11rem;
+          justify-content: center;
+          flex-wrap: wrap;
+          align-items: center;
+      }
+
+      .applet-card {
+          flex: 1 1 20rem; 
+          max-width: 20rem;
+          width: 25rem;
+          margin-bottom: 1rem;
+          box-sizing: border-box;
+      }
+
+      .applet-icon{
+        height: 3rem;
+        width: 3rem;
+      }
+
+    </style>
 </head>
 <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
   <div class="container-fluid">
@@ -45,6 +82,12 @@
 </nav>
 <body>
 
+  
+
+    <h1 class="title" >Event Driven Programming Library</h1>
+      <div class="applet-flex-container"  id="applet-container"></div>
+
+<script src="applet5.js"></script>
 </body>
 
 </html>

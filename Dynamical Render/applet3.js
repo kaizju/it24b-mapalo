@@ -24,9 +24,9 @@ class StudentList {
     renderStudentList(students) {
         const studentListContainer = document.getElementById('studentList');
         studentListContainer.innerHTML = students.map(student => 
-            `<button class="btn btn-primary" style="margin-top:15px; width:25rem">
-                ${student.student_name} | ${student.student_program}
-            </button><br>`
+           `<p class="para" style="margin-top: 10px; width: 25rem;">
+    ${student.student_name} | ${student.student_program}
+</p><br>`
         ).join('');
     }
 

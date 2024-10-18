@@ -1,46 +1,57 @@
-class tropnames {
+class StudentList {
+    
     constructor(dataUrl) {
-        this.dataUrl = dataUrl; 
-        this.utang = [];    
-        this.way();           
+        this.dataUrl = dataUrl;
+        this.students = [];
+        this.init();
     }
 
-    async way() {
-        await this.wayData(); 
-        this.listutang('tropa');
-        this.bindSearchEvent('utangSearchBar', 'tropaSearchList'); 
+    async init() {
+        await this.fetchData();
+        this.renderStudentList(this.students); 
+        this.bindSearchEvent();
     }
 
-    async wayData() {
+    async fetchData() {
         try {
             const response = await fetch(this.dataUrl);
-            this.utang = await response.json(); 
+            this.students = await response.json();
         } catch (error) {
             console.error('Error fetching data:', error);
-            document.getElementById('tropa').innerHTML = 'Error loading data.';
         }
     }
 
-    renderUtangList(containerId) {
-        const container = document.getElementById(containerId);
-        container.innerHTML = this.utang.map(utang => 
+    renderStudentList(students) {
+        const studentListContainer = document.getElementById('studentList');
+        studentListContainer.innerHTML = students.map(student => 
             `<button class="btn btn-primary" style="margin-top:15px; width:25rem">
-                ${utang.tropa_name} | ${utang.dahilan}
+                ${student.student_name} | ${student.student_program}
             </button><br>`
         ).join('');
     }
 
-    bindSearchEvent(searchBarId, searchListId) {
-        const searchBar = document.getElementById(searchBarId);
-        const searchListContainer = document.getElementById(searchListId);
+    bindSearchEvent() {
+        const studentSearchBar = document.getElementById('studentSearchBar');
+        const studentSearchListContainer = document.getElementById('studentSearchList');
 
-        searchBar.addEventListener('input', () => {
-            const query = searchBar.value.toLowerCase();
-            const filteredStudents = this.utang.filter(utang => 
-                `${utang.tropa_name} ${utang.dahilan}`.toLowerCase().includes(query)
-            );
-            this.renderStudentList(searchListId, filteredStudents);
+        studentSearchBar.addEventListener('input', () => {
+            this.filterStudents(studentSearchBar.value, studentSearchListContainer);
         });
+
+        this.renderStudentList(this.students, studentSearchListContainer);
     }
+
+    filterStudents(query, searchListContainer) {
+        const filteredStudents = this.students.filter(student => {
+            const fullName = `${student.student_name} ${student.student_program}`;
+            return fullName.toLowerCase().includes(query.toLowerCase());
+        });
+
+        searchListContainer.innerHTML = '';
+
+        this.renderStudentList(filteredStudents, searchListContainer);
+    }
+    
 }
+
 const studentList = new StudentList('appletinfo.json');

@@ -8,7 +8,7 @@ class tropnames {
     async way() {
         await this.wayData(); 
         this.listutang('tropa');
-        this.bindSearchEvent('studentSearchBar', 'studentSearchList'); 
+        this.bindSearchEvent('utangSearchBar', 'tropaSearchList'); 
     }
 
     async wayData() {
@@ -23,7 +23,7 @@ class tropnames {
 
     renderUtangList(containerId) {
         const container = document.getElementById(containerId);
-        container.innerHTML = this.students.map(utang => 
+        container.innerHTML = this.utang.map(utang => 
             `<button class="btn btn-primary" style="margin-top:15px; width:25rem">
                 ${utang.tropa_name} | ${utang.dahilan}
             </button><br>`
@@ -36,7 +36,7 @@ class tropnames {
 
         searchBar.addEventListener('input', () => {
             const query = searchBar.value.toLowerCase();
-            const filteredStudents = this.students.filter(utang => 
+            const filteredStudents = this.utang.filter(utang => 
                 `${utang.tropa_name} ${utang.dahilan}`.toLowerCase().includes(query)
             );
             this.renderStudentList(searchListId, filteredStudents);

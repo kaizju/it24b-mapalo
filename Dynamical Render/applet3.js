@@ -1,58 +1,46 @@
-class StudentList {
-    
+class tropnames {
     constructor(dataUrl) {
-        this.dataUrl = dataUrl;
-        this.students = [];
-        this.init();
+        this.dataUrl = dataUrl; 
+        this.utang = [];    
+        this.way();           
     }
 
-    async init() {
-        await this.fetchData();
-        this.renderStudentList(this.students); 
-        this.bindSearchEvent();
+    async way() {
+        await this.wayData(); 
+        this.listutang('tropa');
+        this.bindSearchEvent('studentSearchBar', 'studentSearchList'); 
     }
 
-    async fetchData() {
+    async wayData() {
         try {
             const response = await fetch(this.dataUrl);
-            this.students = await response.json();
+            this.utang = await response.json(); 
         } catch (error) {
             console.error('Error fetching data:', error);
+            document.getElementById('tropa').innerHTML = 'Error loading student data.';
         }
     }
 
-    renderStudentList(students) {
-        const studentListContainer = document.getElementById('studentList');
-        studentListContainer.innerHTML = students.map(student => 
-            `<button class="btn btn-primary" style="margin-top:15px; 
-                                                    width:25rem">
+    renderStudentList(containerId) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = this.students.map(student => 
+            `<button class="btn btn-primary" style="margin-top:15px; width:25rem">
                 ${student.student_name} | ${student.student_program}
             </button><br>`
         ).join('');
     }
 
-    bindSearchEvent() {
-        const studentSearchBar = document.getElementById('studentSearchBar');
-        const studentSearchListContainer = document.getElementById('studentSearchList');
+    bindSearchEvent(searchBarId, searchListId) {
+        const searchBar = document.getElementById(searchBarId);
+        const searchListContainer = document.getElementById(searchListId);
 
-        studentSearchBar.addEventListener('input', () => {
-            this.filterStudents(studentSearchBar.value, studentSearchListContainer);
+        searchBar.addEventListener('input', () => {
+            const query = searchBar.value.toLowerCase();
+            const filteredStudents = this.students.filter(student => 
+                `${student.student_name} ${student.student_program}`.toLowerCase().includes(query)
+            );
+            this.renderStudentList(searchListId, filteredStudents);
         });
-
-        this.renderStudentList(this.students, studentSearchListContainer);
     }
-
-    filterStudents(query, searchListContainer) {
-        const filteredStudents = this.students.filter(student => {
-            const fullName = `${student.student_name} ${student.student_program}`;
-            return fullName.toLowerCase().includes(query.toLowerCase());
-        });
-
-        searchListContainer.innerHTML = '';
-
-        this.renderStudentList(filteredStudents, searchListContainer);
-    }
-    
 }
-
 const studentList = new StudentList('appletinfo.json');

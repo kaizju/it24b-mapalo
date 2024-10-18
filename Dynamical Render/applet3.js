@@ -17,15 +17,15 @@ class tropnames {
             this.utang = await response.json(); 
         } catch (error) {
             console.error('Error fetching data:', error);
-            document.getElementById('tropa').innerHTML = 'Error loading student data.';
+            document.getElementById('tropa').innerHTML = 'Error loading data.';
         }
     }
 
-    renderStudentList(containerId) {
+    renderUtangList(containerId) {
         const container = document.getElementById(containerId);
-        container.innerHTML = this.students.map(student => 
+        container.innerHTML = this.students.map(utang => 
             `<button class="btn btn-primary" style="margin-top:15px; width:25rem">
-                ${student.student_name} | ${student.student_program}
+                ${utang.tropa_name} | ${utang.dahilan}
             </button><br>`
         ).join('');
     }
@@ -36,8 +36,8 @@ class tropnames {
 
         searchBar.addEventListener('input', () => {
             const query = searchBar.value.toLowerCase();
-            const filteredStudents = this.students.filter(student => 
-                `${student.student_name} ${student.student_program}`.toLowerCase().includes(query)
+            const filteredStudents = this.students.filter(utang => 
+                `${utang.tropa_name} ${utang.dahilan}`.toLowerCase().includes(query)
             );
             this.renderStudentList(searchListId, filteredStudents);
         });

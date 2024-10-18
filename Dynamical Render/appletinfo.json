@@ -1,8 +1,8 @@
 [
     {
       "student_id": 1,
-      "student_name": "John Doe",
-      "student_program": "BS-Computer Science",
+      "tropa_name": "John Doe",
+      "dahilan": "BS-Computer Science",
       "student_enrolled_date": "2023-01-15"
     },
     {

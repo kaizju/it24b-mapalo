@@ -10,7 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>  
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
         <style>
+           #map { height: 300px; width: 100%; }
+           
           .applet-container{
               margin-top: 1rem;
               margin-left: 2rem;
@@ -61,7 +64,6 @@
 </nav>
 <body>
   <div class="container">
-    <!-- Button trigger modal -->
  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#infoModal" style="margin-top: 2rem;">
    Input Information
  </button>

@@ -72,3 +72,4 @@ displayWeather(data) {
     this.weatherCard.style.display = 'block';
 }
 }
+document.addEventListener('DOMContentLoaded', () => new WeatherApp());

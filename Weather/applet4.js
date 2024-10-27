@@ -58,3 +58,17 @@ async getWeatherData(query, apiKey) {
         return null;
     }
 }
+displayWeather(data) {
+    this.cityName.textContent = `${data.name}, ${data.sys.country} (${data.coord.lat}, ${data.coord.lon})`;
+    this.temperature.textContent = `Temperature: ${data.main.temp} °C`;
+    this.description.textContent = `Weather: ${data.weather[0].description}`;
+    this.humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    this.windSpeed.textContent = `Wind Speed: ${data.wind.speed} m/s`;
+    
+    // Set the weather icon
+    const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+    this.weatherIcon.src = iconUrl;
+
+    this.weatherCard.style.display = 'block';
+}
+}

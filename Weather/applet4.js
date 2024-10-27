@@ -67,9 +67,9 @@ displayWeather(data) {
     this.weatherIcon.src = iconUrl;
 
     this.weatherCard.style.display = 'block';
-    this.map.setView([data.coord.lat, data.coord.lon], 10); // Set map view to the fetched coordinates
-    L.marker([data.coord.lat, data.coord.lon]).addTo(this.map) // Add marker to the map
-        .bindPopup(`Weather in ${data.name}`)
+    this.map.setView([data.coord.lat, data.coord.lon], 10); 
+    L.marker([data.coord.lat, data.coord.lon]).addTo(this.map)
+        .bindPopup(`${data.name}`)
         .openPopup();
 }
 }

@@ -3,6 +3,7 @@ class TodoList {
         this.editingIndex = -1;
         this.addButton = document.getElementById('addButton');
         this.todoInput = document.getElementById('todoInput');
+        this.dueDateInput = document.getElementById('dueDateInput');  // New due date input
         this.todoList = document.getElementById('todoList');
 
         this.addButton.addEventListener('click', () => this.addOrUpdateTask());
@@ -22,23 +23,26 @@ class TodoList {
 
     addOrUpdateTask() {
         const taskText = this.todoInput.value.trim();
+        const dueDate = this.dueDateInput.value;  // Get the due date value
         if (taskText) {
-            this.editingIndex === -1 ? this.addTask(taskText) : this.updateTask(taskText);
+            this.editingIndex === -1 ? this.addTask(taskText, dueDate) : this.updateTask(taskText, dueDate);
             this.todoInput.value = '';
+            this.dueDateInput.value = '';  // Clear the due date input
         }
     }
 
-    addTask(taskText) {
-        const listItem = this.createTaskElement(taskText);
+    addTask(taskText, dueDate) {
+        const listItem = this.createTaskElement(taskText, dueDate);
         this.todoList.appendChild(listItem);
     }
 
-    createTaskElement(taskText) {
+    createTaskElement(taskText, dueDate) {
         const listItem = document.createElement('li');
         listItem.className = 'list-group-item todo-item';
         listItem.innerHTML = `
             <span class="task-text">${taskText}</span>
             <span class="timestamp" style="display: block; margin-top: 0.5rem; color: gray;">Date Added: ${new Date().toLocaleString()}</span>
+            <span class="due-date" style="display: block; color: red;">Due Date and Time: ${dueDate ? new Date(dueDate).toLocaleString() : 'No due date'}</span>
             <div style="margin-top: 0.5rem;">
                 <button class="btn btn-success btn-sm doneButton">Done</button>
                 <button class="btn btn-warning btn-sm editButton">Edit</button>
@@ -54,8 +58,10 @@ class TodoList {
         this.disableButtons(taskItem);
     }
 
-    updateTask(taskText) {
-        this.todoList.children[this.editingIndex].querySelector('.task-text').textContent = taskText;
+    updateTask(taskText, dueDate) {
+        const taskItem = this.todoList.children[this.editingIndex];
+        taskItem.querySelector('.task-text').textContent = taskText;
+        taskItem.querySelector('.due-date').textContent = `Due Date: ${dueDate ? new Date(dueDate).toLocaleString() : 'No due date'}`;
         this.resetEditing();
     }
 
@@ -66,6 +72,8 @@ class TodoList {
     editTask(target) {
         const taskItem = target.closest('.todo-item');
         this.todoInput.value = taskItem.querySelector('.task-text').textContent;
+        const dueDateText = taskItem.querySelector('.due-date').textContent.replace('Due Date: ', '');
+        this.dueDateInput.value = new Date(dueDateText).toISOString().slice(0, -1);  // Set due date input
         this.editingIndex = Array.from(this.todoList.children).indexOf(taskItem);
         this.addButton.textContent = 'Update';
     }

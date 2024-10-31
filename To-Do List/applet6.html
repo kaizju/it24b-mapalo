@@ -8,13 +8,16 @@
     <title>Todo List</title>
     <style>
         .applet-container{
-            margin-top: 3rem;
+            margin-top: 2rem;
             margin-left: 2rem;
         }
 
         .completed{
             text-decoration: line-through;
             color: gray;
+        }
+        .list-group{
+          margin-top:2rem;
         }
 
     </style>
@@ -64,6 +67,8 @@
                 <button class="btn btn-primary" id="addButton">Add</button>
             </div>
         </div>
+        <h2 class="text-center">Add Due Date and Time</h2>
+        <input class="applet-container" type="datetime-local" id="dueDateInput" placeholder="Set Due Date and Time">
         <ul id="todoList" class="list-group"></ul>
     </div>
 </div>

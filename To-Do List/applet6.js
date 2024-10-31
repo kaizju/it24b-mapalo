@@ -48,4 +48,37 @@ class TodoList {
         return listItem;
     }
 
-    
+    doneTask(target) {
+        const taskItem = target.closest('.todo-item');
+        taskItem.querySelector('.task-text').classList.toggle('completed');
+        this.disableButtons(taskItem);
+    }
+
+    updateTask(taskText) {
+        this.todoList.children[this.editingIndex].querySelector('.task-text').textContent = taskText;
+        this.resetEditing();
+    }
+
+    removeTask(target) {
+        this.todoList.removeChild(target.closest('.todo-item'));
+    }
+
+    editTask(target) {
+        const taskItem = target.closest('.todo-item');
+        this.todoInput.value = taskItem.querySelector('.task-text').textContent;
+        this.editingIndex = Array.from(this.todoList.children).indexOf(taskItem);
+        this.addButton.textContent = 'Update';
+    }
+
+    resetEditing() {
+        this.editingIndex = -1;
+        this.addButton.textContent = 'Add';
+    }
+
+    disableButtons(taskItem) {
+        const buttons = taskItem.querySelectorAll('button');
+        buttons.forEach(button => button.disabled = true);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => new TodoList());

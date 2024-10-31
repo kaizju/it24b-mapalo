@@ -3,7 +3,7 @@ class TodoList {
         this.editingIndex = -1;
         this.addButton = document.getElementById('addButton');
         this.todoInput = document.getElementById('todoInput');
-        this.dueDateInput = document.getElementById('dueDateInput');  // New due date input
+        this.dueDateInput = document.getElementById('dueDateInput');
         this.todoList = document.getElementById('todoList');
 
         this.addButton.addEventListener('click', () => this.addOrUpdateTask());
@@ -23,11 +23,11 @@ class TodoList {
 
     addOrUpdateTask() {
         const taskText = this.todoInput.value.trim();
-        const dueDate = this.dueDateInput.value;  // Get the due date value
+        const dueDate = this.dueDateInput.value;
         if (taskText) {
             this.editingIndex === -1 ? this.addTask(taskText, dueDate) : this.updateTask(taskText, dueDate);
             this.todoInput.value = '';
-            this.dueDateInput.value = '';  // Clear the due date input
+            this.dueDateInput.value = '';  
         }
     }
 

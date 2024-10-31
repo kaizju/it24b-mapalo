@@ -91,6 +91,7 @@
             <li><a class="dropdown-item" href="/Dynamical Render/applet3.html">Dynamical Render</a></li>
             <li><a class="dropdown-item" href="/Weather/applet4.html">Open Weather</a></li>
             <li><a class="dropdown-item" href="/Dynamical Cards/apple5.html">Cards</a></li>
+                 <li><a class="dropdown-item" href="/To-do List/applet6.html">To-do List</a></li>
 
           </ul>
         </li>
@@ -154,7 +155,7 @@
       <div class="card-body">
         <h5 class="card-title">To Do List</h5>
         <p class="card-text">This application is the basic list which where your task must do in that day.</p>
-        <a href="/Dynamical Card/applet5.html" class="btn btn-primary">Visit</a>
+        <a href="/To-Do List/applet6.html" class="btn btn-primary">Visit</a>
       </div>
     </div>
   </div>
@@ -169,9 +170,9 @@
     var description = card.querySelector('.card-text').textContent.toLowerCase();
 
     if (title.includes(inputText) || description.includes(inputText)) {
-      card.style.display = ""; // Show card
+      card.style.display = ""; 
     } else {
-      card.style.display = "none"; // Hide card
+      card.style.display = "none"; 
     }
   });
 }

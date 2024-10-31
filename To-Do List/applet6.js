@@ -28,4 +28,9 @@ class TodoList {
         }
     }
 
+    addTask(taskText) {
+        const listItem = this.createTaskElement(taskText);
+        this.todoList.appendChild(listItem);
+    }
+
     

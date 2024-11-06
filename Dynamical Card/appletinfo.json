@@ -25,14 +25,14 @@
     }
     ,
     {
-      "title": "Applet 4 - Dynamical Cards",
+      "title": "Applet 5 - Dynamical Cards",
       "icon":"https://avatars.githubusercontent.com/u/1743227?s=200&v=4",
       "description": "This application is the basic usage of the Openweather API",
       "link": "/Dynamical Card/applet5.html"
     }
     ,
     {
-      "title": "Applet 4 - To-Do List",
+      "title": "Applet 6 - To Do List",
       "icon":"https://avatars.githubusercontent.com/u/1743227?s=200&v=4",
       "description": "This application is the basic usage of the Openweather API",
       "link": "/To-Do List/applet6.html"

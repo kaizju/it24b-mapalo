@@ -15,7 +15,7 @@
       "title": "Applet 3 - Dynamic Elements",
       "icon":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUBvxo5D1HhtA1ORmg3iifsuLNY5B_iVWIwg&s",
       "description": "This application applies dynamic elements such as rendering DOM elements from a list",
-      "link": "/Dynamical Render/applet3.html/"
+      "link": "/Dynamical Render/applet3.html"
     },
     {
       "title": "Applet 4 - Openweather API",

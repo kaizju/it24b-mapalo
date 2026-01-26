@@ -27,7 +27,8 @@ class TodoList {
         if (taskText) {
             this.editingIndex === -1 ? this.addTask(taskText, dueDate) : this.updateTask(taskText, dueDate);
             this.todoInput.value = '';
-            this.dueDateInput.value = '';  
+            this.dueDateInput.value = '';
+            this.resetEditing();
         }
     }
 
@@ -49,6 +50,10 @@ class TodoList {
                 <button class="btn btn-danger btn-sm removeButton">Remove</button>
             </div>
         `;
+        // Store the original due date value as a data attribute
+        if (dueDate) {
+            listItem.dataset.dueDate = dueDate;
+        }
         return listItem;
     }
 
@@ -61,19 +66,35 @@ class TodoList {
     updateTask(taskText, dueDate) {
         const taskItem = this.todoList.children[this.editingIndex];
         taskItem.querySelector('.task-text').textContent = taskText;
-        taskItem.querySelector('.due-date').textContent = `Due Date: ${dueDate ? new Date(dueDate).toLocaleString() : 'No due date'}`;
-        this.resetEditing();
+        taskItem.querySelector('.due-date').textContent = `Due Date and Time: ${dueDate ? new Date(dueDate).toLocaleString() : 'No due date'}`;
+        // Update the stored due date value
+        if (dueDate) {
+            taskItem.dataset.dueDate = dueDate;
+        } else {
+            delete taskItem.dataset.dueDate;
+        }
     }
 
     removeTask(target) {
         this.todoList.removeChild(target.closest('.todo-item'));
+        // Reset editing if we're removing the task being edited
+        if (this.editingIndex !== -1) {
+            this.resetEditing();
+        }
     }
 
     editTask(target) {
         const taskItem = target.closest('.todo-item');
         this.todoInput.value = taskItem.querySelector('.task-text').textContent;
-        const dueDateText = taskItem.querySelector('.due-date').textContent.replace('Due Date: ', '');
-        this.dueDateInput.value = new Date(dueDateText).toISOString().slice(0, -1);  // Set due date input
+        
+        // Get the due date from the data attribute instead of parsing the displayed text
+        const storedDueDate = taskItem.dataset.dueDate;
+        if (storedDueDate) {
+            this.dueDateInput.value = storedDueDate;
+        } else {
+            this.dueDateInput.value = '';
+        }
+        
         this.editingIndex = Array.from(this.todoList.children).indexOf(taskItem);
         this.addButton.textContent = 'Update';
     }

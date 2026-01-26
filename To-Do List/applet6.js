@@ -109,5 +109,11 @@ class TodoList {
         buttons.forEach(button => button.disabled = true);
     }
 }
-
+function myFunction() {
+  let person = prompt("Please enter your name");
+  if (person != null) {
+    document.getElementById("popup").innerHTML =
+    "You are Logged in " + person;
+  }
+}
 document.addEventListener('DOMContentLoaded', () => new TodoList());
